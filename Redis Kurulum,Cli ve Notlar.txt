@@ -1,0 +1,69 @@
+redis windows tarafýnda docker ve chocolatey ile  kullanýlýyor. Ýlerde lazým olurs chocolatey kullanýrýz ama docker ile kurmak daha mantýklý.
+
+Redis server ve client tarfý vardýr.
+Key Value þeklinde veri tutar
+Key en fazla 512 mb olabilir
+
+////////////////////////Docker ile kurulumu için.
+1-Docker kurulu olmasý lazým
+2-PowerShell->Yönetici olarak çalýþtýr.
+3-Docker-Hub sitesinden Redis image yükleme adýmlarýna bak.
+4-docker run -p 7500:6379 --name some-redis -d redis // 7500 bizim verdiðimiz bir port 6379 ise ayaða kalkan redis conteiner portu sabit o
+5-exec -it conteinerid sh --- conteiner id denen yere ilk 3 deðeri yazmak yeterli
+6-redis-cli  -- bunu yazdýktan sonra localhost ipsi gelir. 6379 portunda çalýþan. Artýk cli kodlarý yazabiliriz. redis-cli --raw ile ayaðý kaldýrýrsak. Veri çekerken türkçe karakterli verileri düzgün görebiliriz.
+7-Redis veritabanýný görmek için Redis Desktop manager indirmek gerekiyor.
+8-Redis veritabanýna baðlanmak için Redis Desktop->connect to redis server->name, belirlediðimiz port(örn.7500) ile baðlantý gerçekleþir.
+9-16 tane veritabaný görüntülenmektedir.
+
+
+////////////////////////Redis Veri Tipleri->*******cli üzerinden iþlemler yapýlýr-> Cli tarafýnda türkçe harfler kullanýlmamalý
+
+1-Redis String/////////////////////////////////////////////////  value þeklinde tutulur
+set name sedat  //key:tablo adý  value:sedat veri adý veritabanýna kaydeder,  
+get name -> veritabanýndan sedat olarak dönüþ yapar
+getrange name 0 2 -> sed döner. Sedat'ýn 0 ve 2. indeks arasýndaki verisi
+append name karasungur -> sedatkarasungur olarak güncellendi. veriye ekleme yapmak için append
+
+set sayi 100
+ýncr sayi -> 101 olarak çýktý verir. 1 arttýrma iþlemi ýncr
+ýncrby sayi 10 -> en son 101 di sonra 10 ekler 111 sonucu gelir. Verilen sayý kadar eklemek ýncrby
+decr sayi -> sayi 111-1=110 oldu. 1 azaltma iþlemi decr
+decrby sayi 10 -> 110-10=100 sonucu döner.Verilen sayý kadar çýkarmak decrby
+
+2-Redis List//////////////////////////////////////////////////  row, value þeklinde tutulur
+lpush kitaplar kitap1 -> kitaplar isminde dizin açar içine kitap1 ekler. lpush dizinin baþýna eklemek için kullanýlýr. rpush ise sonuna ekler
+lpush kitaplar kitap2 -> Ekleme iþleminde eklendiði indeksi döner
+
+lrange kitaplar 0 2 -> ilk 3 veriyi getirir. 2 yerine -1 yazarsak verilen baþlangýç indeksinden sonuna kadar tüm verileri alýr
+
+lpop kitaplar -> dizinin baþýndaki veriyi sil
+rpop kitaplar -> dizinin sonundaki veriyi sil
+
+lindex kitaplar 1 -> 1. indekse sahip datayý döner
+
+3-Redis Set////////////////////////////////////////////////////row, value þeklinde tutulur
+list ile ayný sayýlýr farklarý
+eklenen her veri unique olmalý
+veriler listteki gibi baþa veya sona eklenmesi bize baðlý deðil. Random olarak ekleme iþlemi yapar
+
+sadd color mavi-> color dizinine mavi ekledi. Yine mavi eklemeye çalýþýrsam eklemez. Ekleme iþleminde 1 veya 0 döner. Eklendi, eklenmedi diye.
+smembers color -> color dizinini okur
+srem color mavi -> color dizininden maviyi siler. yine 1 veya 0 döner.
+
+4-Redis Sorted Set////////////////////////////////////////////row, value, score þeklinde tutulur
+set ile farký veriyi istediðimiz yere ekleyebiliyoruz. Diðer herþey ayný. 
+
+zadd kitaplar 1 kitap1 -> 1. skor olarak eklendi. Scorelar 0,1,2.. þeklinde baþtan itibaren devam eder.Fakat score deðerleri ayný olabilir. Sadece alt alta sýralanýrlar
+zadd kitaplar 5 kitap5
+
+zrange kitaplar 0 2 -> 0 ile 2 arasýnda verileri getirir.
+zrem kitaplar kitap2 -> kitap5 silinir.
+
+5-Redis hash/////////////////////////////////////////////////// row,key,value þeklinde tutulur
+C# tarafýnda dictionary benzer. Key value þeklinde datalar tutulur
+
+hmset isimler name sedat -> isimler dizinine name key sedat value olarak ekler
+hget isimler name  -> sedat döner. verdiðimiz keydeki veriyi getirir.
+hdel isimler name -> ilgili keyli datayý siler
+hgetall isimler -> tüm verileri getirir
+
