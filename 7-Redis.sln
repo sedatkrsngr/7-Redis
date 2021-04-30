@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisIDistributedCache.web", "RedisIDistributedCache.web\RedisIDistributedCache.web.csproj", "{7EB0C2A7-E1A3-432E-8AD4-5C2A13D0CF6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisStackExchangeAPI.web", "RedisStackExchangeAPI.web\RedisStackExchangeAPI.web.csproj", "{96555EE4-DA3B-4899-A640-EEF4627C6AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{7EB0C2A7-E1A3-432E-8AD4-5C2A13D0CF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EB0C2A7-E1A3-432E-8AD4-5C2A13D0CF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EB0C2A7-E1A3-432E-8AD4-5C2A13D0CF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96555EE4-DA3B-4899-A640-EEF4627C6AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96555EE4-DA3B-4899-A640-EEF4627C6AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96555EE4-DA3B-4899-A640-EEF4627C6AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96555EE4-DA3B-4899-A640-EEF4627C6AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
