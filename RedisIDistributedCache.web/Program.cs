@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Redis.IDistributedCache.web
+namespace RedisIDistributedCache.web
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Redis.IDistributedCache.web.Models
+namespace RedisIDistributedCache.web.Models
 {
     public class ErrorViewModel
     {
